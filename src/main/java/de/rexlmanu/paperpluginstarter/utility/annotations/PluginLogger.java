@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.utility;
+package de.rexlmanu.paperpluginstarter.utility.annotations;
 
 import com.google.inject.BindingAnnotation;
 import java.lang.annotation.ElementType;
