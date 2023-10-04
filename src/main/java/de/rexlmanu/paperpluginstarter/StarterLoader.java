@@ -21,6 +21,8 @@ public class StarterLoader implements PluginLoader {
             new DefaultArtifact("com.github.Exlll.ConfigLib:configlib-paper:v4.2.0"), null));
     resolver.addDependency(
         new Dependency(new DefaultArtifact("com.google.inject:guice:7.0.0"), null));
+    resolver.addDependency(
+        new Dependency(new DefaultArtifact("io.github.classgraph:classgraph:4.8.162"), null));
 
     resolver.addRepository(
         new RemoteRepository.Builder(

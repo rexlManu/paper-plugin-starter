@@ -1,16 +1,9 @@
 package de.rexlmanu.paperpluginstarter;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import org.bukkit.plugin.java.JavaPlugin;
+import de.rexlmanu.paperpluginstarter.internal.BasePlugin;
 
-public class StarterPlugin extends JavaPlugin {
-  private Injector injector;
-
-  @Override
-  public void onEnable() {
-    this.injector = Guice.createInjector(
-        new StarterModule(this)
-    );
+public class StarterPlugin extends BasePlugin {
+  public StarterPlugin() {
+    super(new String[] {StarterPlugin.class.getPackageName()});
   }
 }

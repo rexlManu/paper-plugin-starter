@@ -21,6 +21,7 @@ dependencies {
     compileOnly(libs.commandframework)
     compileOnly(libs.configlib)
     compileOnly(libs.guice)
+    compileOnly(libs.classgraph)
 }
 
 

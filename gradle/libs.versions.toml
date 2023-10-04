@@ -1,15 +1,16 @@
 [versions]
-minecraft = "1.20.1-R0.1-SNAPSHOT"
+minecraft = "1.20.2-R0.1-SNAPSHOT"
 googlejavaformat = "1.17.0"
 [plugins]
-userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.5" }
-runpaper = { id = "xyz.jpenilla.run-paper", version = "2.1.0" }
+userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.6" }
+runpaper = { id = "xyz.jpenilla.run-paper", version = "2.2.0" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "7.1.2" }
 lombok = { id = "io.freefair.lombok", version = "6.6.1" }
 paperyml = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
 spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
 [libraries]
 annotations = { module = "org.jetbrains:annotations", version = "24.0.1" }
-commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.3" }
+commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
 configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.2.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
+classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.162" }
