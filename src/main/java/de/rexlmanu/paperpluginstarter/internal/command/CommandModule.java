@@ -19,9 +19,7 @@ public class CommandModule extends AbstractModule {
   @Provides
   @Singleton
   public final CommandManager<CommandSender> provideCommandManager(
-      JavaPlugin javaPlugin,
-      Injector injector,
-      MiniMessage miniMessage) {
+      JavaPlugin javaPlugin, Injector injector, MiniMessage miniMessage) {
     try {
       Function<CommandSender, CommandSender> mapper = Function.identity();
 
@@ -40,13 +38,13 @@ public class CommandModule extends AbstractModule {
           .parameterInjectorRegistry()
           .registerInjectionService(context -> injector.getInstance(context.getSecond()));
 
-//      commandManager.registerExceptionHandler(
-//          InvalidSyntaxException.class,
-//          (sender, e) ->
-//              sender.sendMessage(
-//                  miniMessage.deserialize(
-//                      /* message */,
-//                      Placeholder.unparsed("syntax", e.getCorrectSyntax()))));
+      //      commandManager.registerExceptionHandler(
+      //          InvalidSyntaxException.class,
+      //          (sender, e) ->
+      //              sender.sendMessage(
+      //                  miniMessage.deserialize(
+      //                      /* message */,
+      //                      Placeholder.unparsed("syntax", e.getCorrectSyntax()))));
 
       return commandManager;
     } catch (Exception e) {

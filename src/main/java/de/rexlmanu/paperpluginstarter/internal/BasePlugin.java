@@ -20,10 +20,13 @@ public class BasePlugin extends JavaPlugin {
   @Override
   public void onLoad() {
     long start = System.currentTimeMillis();
-    try (var result = new ClassGraph().acceptPackages(this.scannablePackages).enableAnnotationInfo()
-        .enableClassInfo()
-        .enableMethodInfo()
-        .scan()) {
+    try (var result =
+        new ClassGraph()
+            .acceptPackages(this.scannablePackages)
+            .enableAnnotationInfo()
+            .enableClassInfo()
+            .enableMethodInfo()
+            .scan()) {
       this.lifecycleModule = new LifecycleModule(result);
     }
 
@@ -42,9 +45,8 @@ public class BasePlugin extends JavaPlugin {
     }
 
     try {
-      this.injector = Guice.createInjector(Stage.PRODUCTION,
-          this.lifecycleModule,
-          new PluginModule(this));
+      this.injector =
+          Guice.createInjector(Stage.PRODUCTION, this.lifecycleModule, new PluginModule(this));
     } catch (Exception e) {
       this.getSLF4JLogger().error("Plugin initialization failed.", e);
       this.disableItself();

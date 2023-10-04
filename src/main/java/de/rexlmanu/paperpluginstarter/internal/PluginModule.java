@@ -72,7 +72,6 @@ public class PluginModule extends AbstractModule {
                         .build())
                 .build());
 
-
     // Instances from the server
     this.bind(PluginManager.class).toInstance(server.getPluginManager());
     this.bind(ServicesManager.class).toInstance(server.getServicesManager());

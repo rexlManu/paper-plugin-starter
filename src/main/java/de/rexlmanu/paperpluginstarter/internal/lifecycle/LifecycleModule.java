@@ -3,10 +3,10 @@ package de.rexlmanu.paperpluginstarter.internal.lifecycle;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.multibindings.Multibinder;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginDisable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TimedTask;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
@@ -29,24 +29,26 @@ public class LifecycleModule extends AbstractModule {
   public LifecycleModule(ScanResult scanResult) {
     this.scanResult = scanResult;
 
-    var componentClassInfoList = this.scanResult.getClassesWithAnnotation(Component.class).filter(
-        ClassInfo::isStandardClass);
+    var componentClassInfoList =
+        this.scanResult
+            .getClassesWithAnnotation(Component.class)
+            .filter(ClassInfo::isStandardClass);
     this.componentClasses = componentClassInfoList.loadClasses();
 
     var eventListenerClassInfoList =
         this.scanResult.getClassesImplementing(Listener.class).filter(ClassInfo::isStandardClass);
     this.listenerClasses = eventListenerClassInfoList.loadClasses(Listener.class);
 
-    this.methodStore = new LifecycleMethodStore(
-        getClassAndMethodsWithAnnotation(this.scanResult, OnPluginEnable.class,
-            componentClassInfoList),
-        getClassAndMethodsWithAnnotation(this.scanResult, OnPluginReload.class,
-            componentClassInfoList),
-        getClassAndMethodsWithAnnotation(this.scanResult, OnPluginDisable.class,
-            componentClassInfoList),
-        getClassAndMethodsWithAnnotation(this.scanResult, TimedTask.class,
-            componentClassInfoList)
-    );
+    this.methodStore =
+        new LifecycleMethodStore(
+            getClassAndMethodsWithAnnotation(
+                this.scanResult, OnPluginEnable.class, componentClassInfoList),
+            getClassAndMethodsWithAnnotation(
+                this.scanResult, OnPluginReload.class, componentClassInfoList),
+            getClassAndMethodsWithAnnotation(
+                this.scanResult, OnPluginDisable.class, componentClassInfoList),
+            getClassAndMethodsWithAnnotation(
+                this.scanResult, TimedTask.class, componentClassInfoList));
   }
 
   @Override
@@ -69,9 +71,10 @@ public class LifecycleModule extends AbstractModule {
     }
   }
 
-  private static Map<Class<?>, List<Method>> getClassAndMethodsWithAnnotation(ScanResult scanResult,
-                                                                              Class<? extends Annotation> annotationClass,
-                                                                              ClassInfoList... intersect) {
+  private static Map<Class<?>, List<Method>> getClassAndMethodsWithAnnotation(
+      ScanResult scanResult,
+      Class<? extends Annotation> annotationClass,
+      ClassInfoList... intersect) {
     Map<Class<?>, List<Method>> methodsMap = new HashMap<>();
     var classInfoList =
         scanResult.getClassesWithMethodAnnotation(annotationClass).intersect(intersect);
@@ -87,5 +90,4 @@ public class LifecycleModule extends AbstractModule {
     }
     return methodsMap;
   }
-
 }

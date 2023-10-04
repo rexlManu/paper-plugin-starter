@@ -15,8 +15,13 @@ public class TestCommand {
 
   @OnPluginEnable
   public void testCommand() {
-    this.commandManager.command(this.commandManager.commandBuilder("test")
-        .handler(context -> context.getSender()
-            .sendMessage(this.miniMessage.deserialize("<rainbow>Test</rainbow>"))));
+    this.commandManager.command(
+        this.commandManager
+            .commandBuilder("test")
+            .handler(
+                context ->
+                    context
+                        .getSender()
+                        .sendMessage(this.miniMessage.deserialize("<rainbow>Test</rainbow>"))));
   }
 }

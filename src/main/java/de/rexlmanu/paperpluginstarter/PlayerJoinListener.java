@@ -2,10 +2,10 @@ package de.rexlmanu.paperpluginstarter;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginDisable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TimedTask;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import lombok.RequiredArgsConstructor;
@@ -42,8 +42,10 @@ public class PlayerJoinListener implements Listener {
 
   @EventHandler
   public void handleJoin(PlayerJoinEvent event) {
-    event.joinMessage(this.miniMessage.deserialize("<gray><player> has entered the server.",
-        Placeholder.unparsed("player", event.getPlayer().getName())));
+    event.joinMessage(
+        this.miniMessage.deserialize(
+            "<gray><player> has entered the server.",
+            Placeholder.unparsed("player", event.getPlayer().getName())));
 
     this.logger.info("{} has joined the server.", event.getPlayer().getName());
   }

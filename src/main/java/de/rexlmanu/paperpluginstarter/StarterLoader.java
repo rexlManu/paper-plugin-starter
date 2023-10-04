@@ -26,15 +26,15 @@ public class StarterLoader implements PluginLoader {
 
     resolver.addRepository(
         new RemoteRepository.Builder(
-            "paper", "default", "https://repo.papermc.io/repository/maven-public/")
+                "paper", "default", "https://repo.papermc.io/repository/maven-public/")
             .build());
     resolver.addRepository(
         new RemoteRepository.Builder("jitpack", "default", "https://jitpack.io").build());
     resolver.addRepository(
         new RemoteRepository.Builder(
-            "sonatype-snapshots",
-            "default",
-            "https://oss.sonatype.org/content/repositories/snapshots")
+                "sonatype-snapshots",
+                "default",
+                "https://oss.sonatype.org/content/repositories/snapshots")
             .build());
 
     classpathBuilder.addLibrary(resolver);

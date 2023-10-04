@@ -15,8 +15,8 @@ public class LifecycleMethodNotifier {
   private final LifecycleMethodStore methodStore;
 
   @Inject
-  public LifecycleMethodNotifier(@Component Set<Object> components,
-                                 LifecycleMethodStore methodStore) {
+  public LifecycleMethodNotifier(
+      @Component Set<Object> components, LifecycleMethodStore methodStore) {
     this.components = components;
     this.methodStore = methodStore;
   }
@@ -33,8 +33,8 @@ public class LifecycleMethodNotifier {
     this.invokeLifecycleMethod(this.methodStore.disableMethods());
   }
 
-  private void invokeLifecycleMethod(Map<Class<?>, List<Method>> methodsMap) throws
-      LifecycleMethodInvocationException {
+  private void invokeLifecycleMethod(Map<Class<?>, List<Method>> methodsMap)
+      throws LifecycleMethodInvocationException {
     for (var entry : methodsMap.entrySet()) {
       var clazz = entry.getKey();
       for (var component : this.components.toArray()) {
