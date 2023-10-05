@@ -37,7 +37,7 @@ import org.bukkit.structure.StructureManager;
 
 @RequiredArgsConstructor
 public class PluginModule extends AbstractModule {
-  private final JavaPlugin plugin;
+  private final BasePlugin plugin;
 
   @Override
   protected void configure() {
@@ -46,6 +46,7 @@ public class PluginModule extends AbstractModule {
     this.install(new TaskModule(server.getAsyncScheduler(), this.plugin));
     this.install(new CommandModule());
 
+    this.bind(BasePlugin.class).toInstance(this.plugin);
     this.bind(JavaPlugin.class).toInstance(this.plugin);
     //noinspection UnstableApiUsage
     this.bind(PluginMeta.class).toInstance(this.plugin.getPluginMeta());
