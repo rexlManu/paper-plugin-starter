@@ -2,6 +2,7 @@ package de.rexlmanu.paperpluginstarter;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import de.rexlmanu.paperpluginstarter.internal.event.EventBus;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginDisable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
@@ -13,9 +14,9 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.server.ServerLoadEvent;
 import org.slf4j.Logger;
 
 @Component
@@ -39,16 +40,7 @@ public class PlayerJoinListener implements Listener {
   private final Logger logger;
   private final Server server;
   private final Injector injector;
-
-  @EventHandler
-  public void handleJoin(PlayerJoinEvent event) {
-    event.joinMessage(
-        this.miniMessage.deserialize(
-            "<gray><player> has entered the server.",
-            Placeholder.unparsed("player", event.getPlayer().getName())));
-
-    this.logger.info("{} has joined the server.", event.getPlayer().getName());
-  }
+  private final EventBus eventBus;
 
   @OnPluginEnable
   public void loadData() {
@@ -57,6 +49,23 @@ public class PlayerJoinListener implements Listener {
     Test instance = this.injector.getInstance(Test.class);
 
     this.logger.info("Test instance: {}", instance);
+
+    eventBus.subscribe(
+        PlayerJoinEvent.class,
+        event -> {
+          event.joinMessage(
+              this.miniMessage.deserialize(
+                  "<gray><player> has entered the server.",
+                  Placeholder.unparsed("player", event.getPlayer().getName())));
+
+          this.logger.info("{} has joined the server.", event.getPlayer().getName());
+        });
+
+    eventBus.subscribe(
+        ServerLoadEvent.class,
+        event -> {
+          this.logger.info("Server loaded.");
+        });
   }
 
   @OnPluginDisable

@@ -19,6 +19,7 @@ public class EventModule extends AbstractModule implements TypeListener {
 
   @Override
   protected void configure() {
+    this.bind(EventBus.class).to(BukkitEventBus.class);
     super.bindListener(Matchers.any(), this);
   }
 
