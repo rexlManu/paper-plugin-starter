@@ -18,8 +18,7 @@ public abstract class ConfigWrapper<C> {
 
   private final String filename;
   private final Class<C> clazz;
-  @Setter
-  private C config;
+  @Setter private C config;
 
   protected ConfigWrapper(String filename, Class<C> clazz) {
     this.filename = filename;

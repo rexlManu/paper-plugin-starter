@@ -32,8 +32,9 @@ public class ReloadCommand {
 
                   context
                       .getSender()
-                      .sendMessage(this.miniMessage.deserialize(this.configProvider.get(
-                          MessageConfig.class).pluginReloaded()));
+                      .sendMessage(
+                          this.miniMessage.deserialize(
+                              this.configProvider.get(MessageConfig.class).pluginReloaded()));
                 }));
   }
 }

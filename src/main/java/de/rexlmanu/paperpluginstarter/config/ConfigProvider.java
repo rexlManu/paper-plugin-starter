@@ -36,8 +36,7 @@ public class ConfigProvider {
   @OnPluginEnable
   @OnPluginReload
   public void loadConfigs() {
-    this.configWrappers.values().forEach(
-        this::loadConfig);
+    this.configWrappers.values().forEach(this::loadConfig);
 
     this.logger.info("Loaded {} configs.", this.configWrappers.size());
   }
