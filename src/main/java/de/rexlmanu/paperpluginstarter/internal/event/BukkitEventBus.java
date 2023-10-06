@@ -29,7 +29,7 @@ public class BukkitEventBus implements EventBus {
                 action.accept(eventType.cast(event));
               }
             },
-            plugin,
+            this.plugin,
             ignoreCancelled);
     return eventListener;
   }
