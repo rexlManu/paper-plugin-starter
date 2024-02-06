@@ -7,7 +7,7 @@ runpaper = { id = "xyz.jpenilla.run-paper", version = "2.2.0" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "7.1.2" }
 lombok = { id = "io.freefair.lombok", version = "6.6.1" }
 paperyml = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
-spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
 [libraries]
 annotations = { module = "org.jetbrains:annotations", version = "24.0.1" }
 commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
