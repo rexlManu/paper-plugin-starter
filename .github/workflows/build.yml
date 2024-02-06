@@ -3,7 +3,7 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: [ "master", "main" ]
+    branches: [ master, main ]
   pull_request:
 
 jobs:
@@ -27,3 +27,11 @@ jobs:
         with:
           name: plugin-files
           path: build/libs/*.jar
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--skip-sorting-imports --replace"
+          commit-message: "style: apply google-java-format"
