@@ -27,8 +27,15 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "style: format code with spotless"
-          git push
+          # Check for changes
+          git diff --staged --quiet || {
+            # Commit and push if there are changes
+            git commit -m "style: format code with spotless"
+            git push
+          } || {
+            # This block executes if the git diff command above returns true (no changes)
+            echo "No changes to commit."
+          }
   build:
     name: Build
     runs-on: ubuntu-latest
