@@ -9,7 +9,7 @@ lombok = { id = "io.freefair.lombok", version = "6.6.1" }
 paperyml = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
 spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
 [libraries]
-annotations = { module = "org.jetbrains:annotations", version = "24.0.1" }
+annotations = { module = "org.jetbrains:annotations", version = "24.1.0" }
 commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
 configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.2.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
