@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter;
+package de.rexlmanu.paperpluginstarter.listener;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
-public class PlayerJoinListener implements Listener {
+public class ExamplePlayerJoinListener implements Listener {
   public static class Test {
     private final Logger logger;
     private final int randomValue = (int) (Math.random() * 100);
