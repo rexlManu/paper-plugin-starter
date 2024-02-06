@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.config;
+package de.rexlmanu.paperpluginstarter.config.message;
 
 import de.exlll.configlib.Configuration;
 import lombok.AccessLevel;
@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Configuration
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PluginConfig {
-  String test = "test";
+public class MessageConfig {
+  String pluginReloaded = "<rainbow>Plugin reloaded.</rainbow>";
+  String itemReceived = "<rainbow>Item received.</rainbow>";
 }

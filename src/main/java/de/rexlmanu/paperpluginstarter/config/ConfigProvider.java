@@ -1,6 +1,7 @@
 package de.rexlmanu.paperpluginstarter.config;
 
 import com.google.inject.Inject;
+import de.rexlmanu.paperpluginstarter.config.message.MessageConfig;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.DataDirectory;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
