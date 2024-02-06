@@ -25,3 +25,11 @@ This is a boilerplate for creating a Paper plugin.
 - [Cloud](https://github.com/Incendo/cloud)
 - [Classgraph](https://github.com/classgraph/classgraph)
 - [Annotations](https://github.com/JetBrains/java-annotations)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Author
+
+- [Emmanuel Lampe](https://github.com/rexlManu)
