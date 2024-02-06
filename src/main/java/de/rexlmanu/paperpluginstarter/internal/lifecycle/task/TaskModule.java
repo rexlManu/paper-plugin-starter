@@ -10,12 +10,16 @@ import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.WeakHashMap;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @RequiredArgsConstructor
 public class TaskModule extends AbstractModule implements TypeListener {
+  private final Set<Object> discoveredComponents = Collections.newSetFromMap(new WeakHashMap<>());
   private final AsyncScheduler scheduler;
   private final JavaPlugin plugin;
 
@@ -39,6 +43,11 @@ public class TaskModule extends AbstractModule implements TypeListener {
     encounter.register(
         (InjectionListener<I>)
             instance -> {
+              // check if instance is already discovered
+              if (!this.discoveredComponents.add(instance)) {
+                return;
+              }
+
               for (var method : methods) {
                 TimedTask annotation = method.getAnnotation(TimedTask.class);
 
