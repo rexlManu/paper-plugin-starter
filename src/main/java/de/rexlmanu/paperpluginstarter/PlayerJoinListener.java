@@ -47,6 +47,8 @@ public class PlayerJoinListener implements Listener {
     this.logger.info("Loading data...");
 
     Test instance = this.injector.getInstance(Test.class);
+    Test instance2 = this.injector.getInstance(Test.class);
+    Test instance3 = this.injector.getInstance(Test.class);
 
     this.logger.info("Test instance: {}", instance);
 

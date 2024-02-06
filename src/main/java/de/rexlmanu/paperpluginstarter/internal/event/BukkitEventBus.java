@@ -1,5 +1,6 @@
 package de.rexlmanu.paperpluginstarter.internal.event;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Singleton
-@RequiredArgsConstructor(onConstructor = @__(@com.google.inject.Inject))
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class BukkitEventBus implements EventBus {
   private final JavaPlugin plugin;
 

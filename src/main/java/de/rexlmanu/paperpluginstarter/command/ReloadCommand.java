@@ -7,12 +7,13 @@ import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 import de.rexlmanu.paperpluginstarter.internal.BasePlugin;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
+import javax.inject.Inject;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@com.google.inject.Inject))
+@RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class ReloadCommand {
   private final CommandManager<CommandSender> commandManager;
   private final MiniMessage miniMessage;
