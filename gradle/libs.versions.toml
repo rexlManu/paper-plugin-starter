@@ -19,6 +19,7 @@ cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", versio
 configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.4.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
 classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.162" }
+paper = { module = "io.papermc.paper:paper-api", version.ref = "minecraft" }
 
 [bundles]
 cloud = ["cloud-paper", "cloud-annotations", "cloud-minecraft-extras"]

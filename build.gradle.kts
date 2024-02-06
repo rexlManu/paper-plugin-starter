@@ -3,18 +3,22 @@ plugins {
 	alias(libs.plugins.spotless)
 	alias(libs.plugins.lombok)
 	alias(libs.plugins.runpaper)
-	alias(libs.plugins.userdev)
+	// alias(libs.plugins.userdev)
 	alias(libs.plugins.shadow)
 	alias(libs.plugins.paperyml)
 }
 
 repositories {
 	mavenCentral()
+	maven("https://repo.papermc.io/repository/maven-public/")
 	maven("https://jitpack.io")
 }
 
 dependencies {
-	paperweight.paperDevBundle(libs.versions.minecraft)
+	// If you need nms, you can uncomment the paperweight lines
+	// This is not default because the compile time increases by a lot
+	// paperweight.paperDevBundle(libs.versions.minecraft)
+	compileOnly(libs.paper)
 
 	compileOnly(libs.bundles.cloud)
 	compileOnly(libs.configlib)
@@ -53,7 +57,7 @@ tasks {
 		options.encoding = Charsets.UTF_8.name()
 	}
 	assemble {
-		dependsOn(reobfJar)
+		// dependsOn(reobfJar)
 	}
 	jar {
 		enabled = false
