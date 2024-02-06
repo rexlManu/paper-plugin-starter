@@ -1,5 +1,6 @@
 [versions]
 minecraft = "1.20.4-R0.1-SNAPSHOT"
+minecraftserver = "1.20.4"
 googlejavaformat = "1.17.0"
 [plugins]
 userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.11" }

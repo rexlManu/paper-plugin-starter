@@ -74,7 +74,7 @@ tasks {
 		minimize()
 	}
 	runServer {
-		minecraftVersion(libs.versions.minecraft.get())
+		minecraftVersion(libs.versions.minecraftserver.get())
 	}
 }
 
