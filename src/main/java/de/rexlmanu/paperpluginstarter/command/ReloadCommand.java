@@ -2,12 +2,12 @@ package de.rexlmanu.paperpluginstarter.command;
 
 import cloud.commandframework.ArgumentDescription;
 import cloud.commandframework.CommandManager;
+import com.google.inject.Inject;
 import de.rexlmanu.paperpluginstarter.config.ConfigProvider;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 import de.rexlmanu.paperpluginstarter.internal.BasePlugin;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
-import javax.inject.Inject;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
