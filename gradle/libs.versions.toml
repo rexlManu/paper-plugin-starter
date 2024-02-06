@@ -2,6 +2,7 @@
 minecraft = "1.20.4-R0.1-SNAPSHOT"
 minecraftserver = "1.20.4"
 googlejavaformat = "1.17.0"
+cloud = "2.0.0-beta.2"
 [plugins]
 userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.11" }
 runpaper = { id = "xyz.jpenilla.run-paper", version = "2.2.3" }
@@ -12,6 +13,12 @@ spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
 [libraries]
 annotations = { module = "org.jetbrains:annotations", version = "24.1.0" }
 commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
+cloud-paper = { module = "org.incendo:cloud-paper", version.ref = "cloud" }
+cloud-annotations = { module = "org.incendo:cloud-annotations", version.ref = "cloud" }
+cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", version.ref = "cloud" }
 configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.4.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
 classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.162" }
+
+[bundles]
+cloud = ["cloud-paper", "cloud-annotations", "cloud-minecraft-extras"]

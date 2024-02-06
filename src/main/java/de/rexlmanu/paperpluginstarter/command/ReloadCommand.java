@@ -1,7 +1,7 @@
 package de.rexlmanu.paperpluginstarter.command;
 
-import cloud.commandframework.ArgumentDescription;
-import cloud.commandframework.CommandManager;
+import static net.kyori.adventure.text.Component.text;
+
 import com.google.inject.Inject;
 import de.rexlmanu.paperpluginstarter.config.ConfigProvider;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
@@ -11,6 +11,8 @@ import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
+import org.incendo.cloud.CommandManager;
+import org.incendo.cloud.minecraft.extras.RichDescription;
 
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -24,7 +26,7 @@ public class ReloadCommand {
   public void registerCommands() {
     this.commandManager.command(
         this.commandManager
-            .commandBuilder("starter", ArgumentDescription.of("Reload the plugin"))
+            .commandBuilder("starter", RichDescription.of(text("Reload the plugin.")))
             .permission("starter.command.reload")
             .literal("reload")
             .handler(
@@ -32,7 +34,7 @@ public class ReloadCommand {
                   this.basePlugin.onReload();
 
                   context
-                      .getSender()
+                      .sender()
                       .sendMessage(
                           this.miniMessage.deserialize(
                               this.configProvider.get(MessageConfig.class).pluginReloaded()));

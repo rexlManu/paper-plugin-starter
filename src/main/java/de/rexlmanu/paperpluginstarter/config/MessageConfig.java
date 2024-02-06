@@ -8,4 +8,5 @@ import lombok.Getter;
 @Getter
 public class MessageConfig {
   private String pluginReloaded = "<rainbow>Plugin reloaded.</rainbow>";
+  private String itemReceived = "<rainbow>Item received.</rainbow>";
 }

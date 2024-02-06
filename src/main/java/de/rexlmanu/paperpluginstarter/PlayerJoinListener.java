@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 public class PlayerJoinListener implements Listener {
   public static class Test {
     private final Logger logger;
+    private final int randomValue = (int) (Math.random() * 100);
 
     @Inject
     public Test(Logger logger) {
@@ -32,7 +33,7 @@ public class PlayerJoinListener implements Listener {
 
     @TimedTask(period = 1000)
     public void test() {
-      this.logger.info("This is a scheduled task, it runs every 1000ms.");
+      this.logger.info("Test: {}", this.randomValue);
     }
   }
 
@@ -47,8 +48,6 @@ public class PlayerJoinListener implements Listener {
     this.logger.info("Loading data...");
 
     Test instance = this.injector.getInstance(Test.class);
-    Test instance2 = this.injector.getInstance(Test.class);
-    Test instance3 = this.injector.getInstance(Test.class);
 
     this.logger.info("Test instance: {}", instance);
 
