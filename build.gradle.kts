@@ -73,6 +73,9 @@ tasks {
 		}
 		minimize()
 	}
+	runServer {
+		minecraftVersion(libs.versions.minecraft.get())
+	}
 }
 
 paper {
