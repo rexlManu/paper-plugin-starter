@@ -9,6 +9,7 @@ import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginRel
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
 import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TimedTask;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
+import java.util.concurrent.ThreadLocalRandom;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
@@ -24,7 +25,7 @@ import org.slf4j.Logger;
 public class ExamplePlayerJoinListener implements Listener {
   public static class Test {
     private final Logger logger;
-    private final int randomValue = (int) (Math.random() * 100);
+    private final int randomValue = ThreadLocalRandom.current().nextInt(100);
 
     @Inject
     public Test(Logger logger) {
@@ -62,11 +63,7 @@ public class ExamplePlayerJoinListener implements Listener {
           this.logger.info("{} has joined the server.", event.getPlayer().getName());
         });
 
-    eventBus.subscribe(
-        ServerLoadEvent.class,
-        event -> {
-          this.logger.info("Server loaded.");
-        });
+    eventBus.subscribe(ServerLoadEvent.class, event -> this.logger.info("Server loaded."));
   }
 
   @OnPluginDisable

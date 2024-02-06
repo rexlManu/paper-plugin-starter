@@ -35,50 +35,38 @@ public class CommandModule extends AbstractModule {
   @Singleton
   public CommandManager<CommandSender> provideCommandManager(
       JavaPlugin javaPlugin, Injector injector, MiniMessage miniMessage) {
-    try {
 
-      PaperCommandManager<CommandSender> commandManager =
-          new PaperCommandManager<>(
-              javaPlugin, ExecutionCoordinator.asyncCoordinator(), SenderMapper.identity());
+    PaperCommandManager<CommandSender> commandManager =
+        new PaperCommandManager<>(
+            javaPlugin, ExecutionCoordinator.asyncCoordinator(), SenderMapper.identity());
 
-      if (commandManager.hasCapability(CloudBukkitCapabilities.NATIVE_BRIGADIER)) {
-        commandManager.registerBrigadier();
-      } else if (commandManager.hasCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION)) {
-        commandManager.registerAsynchronousCompletions();
-      }
-
-      commandManager
-          .parameterInjectorRegistry()
-          .registerInjectionService(context -> injector.getInstance(context.injectedClass()));
-
-      MinecraftExceptionHandler.<CommandSender>create(AudienceProvider.nativeAudience())
-          .defaultInvalidSyntaxHandler()
-          .defaultInvalidSenderHandler()
-          .defaultNoPermissionHandler()
-          .defaultArgumentParsingHandler()
-          .defaultCommandExecutionHandler()
-          .decorator(
-              component ->
-                  text()
-                      .append(text("[", NamedTextColor.DARK_GRAY))
-                      .append(text("Starter", NamedTextColor.GOLD))
-                      .append(text("] ", NamedTextColor.DARK_GRAY))
-                      .append(component)
-                      .build())
-          .registerTo(commandManager);
-
-      //      commandManager.registerExceptionHandler(
-      //          InvalidSyntaxException.class,
-      //          (sender, e) ->
-      //              sender.sendMessage(
-      //                  miniMessage.deserialize(
-      //                      /* message */,
-      //                      Placeholder.unparsed("syntax", e.getCorrectSyntax()))));
-
-      return commandManager;
-    } catch (Exception e) {
-      throw new RuntimeException("Failed to initialize the CommandManager");
+    if (commandManager.hasCapability(CloudBukkitCapabilities.NATIVE_BRIGADIER)) {
+      commandManager.registerBrigadier();
+    } else if (commandManager.hasCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION)) {
+      commandManager.registerAsynchronousCompletions();
     }
+
+    commandManager
+        .parameterInjectorRegistry()
+        .registerInjectionService(context -> injector.getInstance(context.injectedClass()));
+
+    MinecraftExceptionHandler.<CommandSender>create(AudienceProvider.nativeAudience())
+        .defaultInvalidSyntaxHandler()
+        .defaultInvalidSenderHandler()
+        .defaultNoPermissionHandler()
+        .defaultArgumentParsingHandler()
+        .defaultCommandExecutionHandler()
+        .decorator(
+            component ->
+                text()
+                    .append(text("[", NamedTextColor.DARK_GRAY))
+                    .append(text("Starter", NamedTextColor.GOLD))
+                    .append(text("] ", NamedTextColor.DARK_GRAY))
+                    .append(component)
+                    .build())
+        .registerTo(commandManager);
+
+    return commandManager;
   }
 
   @Provides

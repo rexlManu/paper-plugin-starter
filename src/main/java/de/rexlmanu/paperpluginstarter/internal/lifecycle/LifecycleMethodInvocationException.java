@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class LifecycleMethodInvocationException extends RuntimeException {
   private final Class<?> componentClass;
-  private final Method lifecycleMethod;
+  private final transient Method lifecycleMethod;
 
   LifecycleMethodInvocationException(
       Class<?> componentClass, Method lifecycleMethod, Throwable cause) {
