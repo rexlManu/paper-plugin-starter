@@ -11,6 +11,6 @@ spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
 [libraries]
 annotations = { module = "org.jetbrains:annotations", version = "24.0.1" }
 commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
-configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.2.0" }
+configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "v4.4.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
 classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.162" }
