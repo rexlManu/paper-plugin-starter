@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - run: chmod +x gradlew
+      - name: Build project
+        run: ./gradlew build
+      - name: Upload artifact
+        uses: upload-artifact@v4
+        with:
+          name: plugin-files
+          path: build/libs/*.jar
