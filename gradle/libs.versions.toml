@@ -2,7 +2,7 @@
 minecraft = "1.20.2-R0.1-SNAPSHOT"
 googlejavaformat = "1.17.0"
 [plugins]
-userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.6" }
+userdev = { id = "io.papermc.paperweight.userdev", version = "1.5.11" }
 runpaper = { id = "xyz.jpenilla.run-paper", version = "2.2.0" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "7.1.2" }
 lombok = { id = "io.freefair.lombok", version = "6.6.1" }
