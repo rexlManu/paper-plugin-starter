@@ -28,6 +28,8 @@ jobs:
           name: plugin-files
           path: build/libs/*.jar
   formatting:
+    name: Format code
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
