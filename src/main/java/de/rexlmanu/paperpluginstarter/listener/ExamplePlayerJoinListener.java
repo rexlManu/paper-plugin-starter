@@ -2,12 +2,12 @@ package de.rexlmanu.paperpluginstarter.listener;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
-import de.rexlmanu.paperpluginstarter.internal.event.EventBus;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginDisable;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TimedTask;
+import de.rexlmanu.boilerplate.event.EventBus;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginDisable;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.boilerplate.lifecycle.component.Component;
+import de.rexlmanu.boilerplate.lifecycle.task.TimedTask;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import java.util.concurrent.ThreadLocalRandom;
 import lombok.RequiredArgsConstructor;

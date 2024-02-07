@@ -1,8 +1,8 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle;
+package de.rexlmanu.boilerplate.lifecycle;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
+import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;

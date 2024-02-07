@@ -1,11 +1,10 @@
-package de.rexlmanu.paperpluginstarter.config;
+package de.rexlmanu.boilerplate.config;
 
 import com.google.inject.Inject;
-import de.rexlmanu.paperpluginstarter.config.message.MessageConfig;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.DataDirectory;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
+import de.rexlmanu.boilerplate.lifecycle.annotations.DataDirectory;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,9 +20,6 @@ public class ConfigProvider {
   public ConfigProvider(@DataDirectory Path dataDirectory, Logger logger) {
     this.dataDirectory = dataDirectory;
     this.logger = logger;
-
-    this.register(ConfigWrapper.from(MessageConfig.class, "messages.yml"));
-    this.register(ConfigWrapper.from(PluginConfig.class, "config.yml"));
   }
 
   public <C> C get(Class<C> clazz) {

@@ -1,28 +1,37 @@
-package de.rexlmanu.paperpluginstarter.internal;
+package de.rexlmanu.boilerplate;
 
 import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Stage;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.LifecycleMethodNotifier;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.LifecycleModule;
+import de.rexlmanu.boilerplate.config.ConfigProvider;
+import de.rexlmanu.boilerplate.lifecycle.LifecycleMethodNotifier;
+import de.rexlmanu.boilerplate.lifecycle.LifecycleModule;
 import io.github.classgraph.ClassGraph;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.stream.Stream;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @RequiredArgsConstructor
-public class BasePlugin extends JavaPlugin {
+public abstract class BasePlugin extends JavaPlugin {
   protected Injector injector;
   protected final String[] scannablePackages;
   private LifecycleModule lifecycleModule;
+  @Inject protected ConfigProvider configProvider;
 
   @Override
   public void onLoad() {
     long start = System.currentTimeMillis();
     try (var result =
         new ClassGraph()
-            .acceptPackages(this.scannablePackages)
+            .acceptPackages(
+                Stream.concat(
+                        Stream.of(BasePlugin.class.getPackageName()),
+                        Arrays.stream(this.scannablePackages))
+                    .toArray(String[]::new))
             .enableAnnotationInfo()
             .enableClassInfo()
             .enableMethodInfo()
@@ -53,6 +62,9 @@ public class BasePlugin extends JavaPlugin {
       return;
     }
 
+    this.injector.injectMembers(this);
+
+    this.onPluginEnable();
     this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginEnable();
 
     this.getSLF4JLogger().info("Plugin enabled in {}ms.", System.currentTimeMillis() - start);
@@ -65,6 +77,8 @@ public class BasePlugin extends JavaPlugin {
       return;
     }
     long start = System.currentTimeMillis();
+
+    this.onPluginDisable();
     this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginDisable();
 
     this.getSLF4JLogger().info("Plugin disabled in {}ms.", System.currentTimeMillis() - start);
@@ -72,7 +86,10 @@ public class BasePlugin extends JavaPlugin {
 
   public void onReload() {
     long start = System.currentTimeMillis();
+
+    this.onPluginReload();
     this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginReload();
+
     this.getSLF4JLogger().info("Plugin reloaded in {}ms.", System.currentTimeMillis() - start);
   }
 
@@ -85,4 +102,10 @@ public class BasePlugin extends JavaPlugin {
       this.saveResource(resourcePath, false);
     }
   }
+
+  public void onPluginEnable() {}
+
+  public void onPluginDisable() {}
+
+  public void onPluginReload() {}
 }

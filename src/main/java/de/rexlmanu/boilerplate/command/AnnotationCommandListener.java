@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.command;
+package de.rexlmanu.boilerplate.command;
 
 import com.google.inject.Inject;
 import com.google.inject.TypeLiteral;

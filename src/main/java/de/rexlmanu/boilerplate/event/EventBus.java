@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.event;
+package de.rexlmanu.boilerplate.event;
 
 import java.util.function.Consumer;
 import org.bukkit.event.Event;

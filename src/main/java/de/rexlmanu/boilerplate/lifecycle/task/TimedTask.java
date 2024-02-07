@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle.task;
+package de.rexlmanu.boilerplate.lifecycle.task;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

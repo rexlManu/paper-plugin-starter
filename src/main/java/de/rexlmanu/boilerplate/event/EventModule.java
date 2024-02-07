@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.event;
+package de.rexlmanu.boilerplate.event;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;

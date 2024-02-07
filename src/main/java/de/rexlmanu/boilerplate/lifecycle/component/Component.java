@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle.component;
+package de.rexlmanu.boilerplate.lifecycle.component;
 
 import com.google.inject.BindingAnnotation;
 import java.lang.annotation.*;

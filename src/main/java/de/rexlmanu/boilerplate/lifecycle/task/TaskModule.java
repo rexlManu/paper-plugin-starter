@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle.task;
+package de.rexlmanu.boilerplate.lifecycle.task;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;

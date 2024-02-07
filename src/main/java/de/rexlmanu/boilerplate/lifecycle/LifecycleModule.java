@@ -1,13 +1,13 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle;
+package de.rexlmanu.boilerplate.lifecycle;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.multibindings.Multibinder;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginDisable;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginEnable;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.OnPluginReload;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.component.Component;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TimedTask;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginDisable;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
+import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.boilerplate.lifecycle.component.Component;
+import de.rexlmanu.boilerplate.lifecycle.task.TimedTask;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;

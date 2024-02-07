@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.config;
+package de.rexlmanu.boilerplate.config;
 
 import de.exlll.configlib.YamlConfigurations;
 import java.nio.file.Path;

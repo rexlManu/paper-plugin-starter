@@ -1,13 +1,13 @@
-package de.rexlmanu.paperpluginstarter.internal;
+package de.rexlmanu.boilerplate;
 
 import com.destroystokyo.paper.entity.ai.MobGoals;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
-import de.rexlmanu.paperpluginstarter.internal.command.CommandModule;
-import de.rexlmanu.paperpluginstarter.internal.event.EventModule;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.DataDirectory;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.annotations.PluginLogger;
-import de.rexlmanu.paperpluginstarter.internal.lifecycle.task.TaskModule;
+import de.rexlmanu.boilerplate.command.CommandModule;
+import de.rexlmanu.boilerplate.event.EventModule;
+import de.rexlmanu.boilerplate.lifecycle.annotations.DataDirectory;
+import de.rexlmanu.boilerplate.lifecycle.annotations.PluginLogger;
+import de.rexlmanu.boilerplate.lifecycle.task.TaskModule;
 import io.papermc.paper.datapack.DatapackManager;
 import io.papermc.paper.plugin.configuration.PluginMeta;
 import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;

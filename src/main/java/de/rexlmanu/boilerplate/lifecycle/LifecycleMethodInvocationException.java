@@ -1,4 +1,4 @@
-package de.rexlmanu.paperpluginstarter.internal.lifecycle;
+package de.rexlmanu.boilerplate.lifecycle;
 
 import java.lang.reflect.Method;
 import lombok.Getter;

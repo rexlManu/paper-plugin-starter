@@ -2,7 +2,7 @@ package de.rexlmanu.paperpluginstarter.config.message;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import de.rexlmanu.paperpluginstarter.config.ConfigProvider;
+import de.rexlmanu.boilerplate.config.ConfigProvider;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.audience.Audience;
