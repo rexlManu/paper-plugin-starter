@@ -3,8 +3,8 @@ package de.rexlmanu.paperpluginstarter;
 import de.rexlmanu.boilerplate.BasePlugin;
 import de.rexlmanu.boilerplate.config.ConfigWrapper;
 import de.rexlmanu.boilerplate.message.MessageModule;
-import de.rexlmanu.paperpluginstarter.config.PluginConfig;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
+import de.rexlmanu.paperpluginstarter.config.PluginConfig;
 
 public class StarterPlugin extends BasePlugin {
   public StarterPlugin() {

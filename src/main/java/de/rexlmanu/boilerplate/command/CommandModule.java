@@ -1,6 +1,5 @@
 package de.rexlmanu.boilerplate.command;
 
-
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -9,9 +8,9 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.name.Named;
+import de.rexlmanu.boilerplate.message.MessageProvider;
 import de.rexlmanu.boilerplate.utils.MiniMessageComponentCaptionFormatter;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
-import de.rexlmanu.boilerplate.message.MessageProvider;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.minimessage.MiniMessage;

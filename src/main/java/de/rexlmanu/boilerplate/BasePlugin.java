@@ -26,8 +26,7 @@ public abstract class BasePlugin extends JavaPlugin {
   protected final String[] scannablePackages;
   private LifecycleModule lifecycleModule;
   @Inject protected ConfigProvider configProvider;
-  @Getter
-  private final List<Supplier<AbstractModule>> moduleSuppliers = new ArrayList<>();
+  @Getter private final List<Supplier<AbstractModule>> moduleSuppliers = new ArrayList<>();
 
   @Override
   public void onLoad() {

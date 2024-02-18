@@ -169,7 +169,8 @@ public class FoliaScheduler implements TaskScheduler {
   }
 
   @Override
-  public BaseScheduledTask runTaskLaterAsynchronously(Plugin plugin, Runnable runnable, long delay) {
+  public BaseScheduledTask runTaskLaterAsynchronously(
+      Plugin plugin, Runnable runnable, long delay) {
     // Folia exception: Delay ticks may not be <= 0
     delay = getOneIfNotPositive(delay);
     return new FoliaScheduledTask(

@@ -91,7 +91,8 @@ public interface TaskScheduler {
 
   /** Deprecated: use {@link #runTaskTimer(Runnable, long, long)} */
   @Deprecated
-  default BaseScheduledTask runTaskTimer(Plugin plugin, Runnable runnable, long delay, long period) {
+  default BaseScheduledTask runTaskTimer(
+      Plugin plugin, Runnable runnable, long delay, long period) {
     return runTaskTimer(runnable, delay, period);
   }
 
@@ -194,7 +195,8 @@ public interface TaskScheduler {
    * @param delay The initial delay, in ticks.
    * @param period The period, in ticks.
    */
-  default BaseScheduledTask runTaskTimer(Entity entity, Runnable runnable, long delay, long period) {
+  default BaseScheduledTask runTaskTimer(
+      Entity entity, Runnable runnable, long delay, long period) {
     return runTaskTimer(runnable, delay, period);
   }
 
@@ -234,7 +236,8 @@ public interface TaskScheduler {
 
   /** Deprecated: use {@link #runTaskLaterAsynchronously(Runnable, long)} */
   @Deprecated
-  default BaseScheduledTask runTaskLaterAsynchronously(Plugin plugin, Runnable runnable, long delay) {
+  default BaseScheduledTask runTaskLaterAsynchronously(
+      Plugin plugin, Runnable runnable, long delay) {
     return runTaskLaterAsynchronously(runnable, delay);
   }
 
