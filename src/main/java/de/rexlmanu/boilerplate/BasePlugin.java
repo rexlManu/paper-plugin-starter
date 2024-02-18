@@ -1,5 +1,6 @@
 package de.rexlmanu.boilerplate;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -10,8 +11,12 @@ import de.rexlmanu.boilerplate.lifecycle.LifecycleModule;
 import io.github.classgraph.ClassGraph;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,6 +26,8 @@ public abstract class BasePlugin extends JavaPlugin {
   protected final String[] scannablePackages;
   private LifecycleModule lifecycleModule;
   @Inject protected ConfigProvider configProvider;
+  @Getter
+  private final List<Supplier<AbstractModule>> moduleSuppliers = new ArrayList<>();
 
   @Override
   public void onLoad() {
@@ -108,4 +115,12 @@ public abstract class BasePlugin extends JavaPlugin {
   public void onPluginDisable() {}
 
   public void onPluginReload() {}
+
+  public void installModule(AbstractModule abstractModule) {
+    this.moduleSuppliers.add(() -> abstractModule);
+  }
+
+  public void installModule(Supplier<AbstractModule> abstractModuleSupplier) {
+    this.moduleSuppliers.add(abstractModuleSupplier);
+  }
 }

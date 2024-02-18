@@ -2,8 +2,8 @@ package de.rexlmanu.paperpluginstarter.command;
 
 import com.google.inject.Inject;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
-import de.rexlmanu.paperpluginstarter.config.message.MessageConfig;
-import de.rexlmanu.paperpluginstarter.config.message.MessageProvider;
+import de.rexlmanu.paperpluginstarter.config.MessageConfig;
+import de.rexlmanu.boilerplate.message.MessageProvider;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

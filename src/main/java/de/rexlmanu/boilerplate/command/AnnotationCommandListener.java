@@ -9,10 +9,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.WeakHashMap;
+import lombok.extern.slf4j.Slf4j;
 import org.bukkit.command.CommandSender;
 import org.incendo.cloud.annotations.AnnotationParser;
 import org.incendo.cloud.annotations.Command;
 
+@Slf4j
 public class AnnotationCommandListener implements TypeListener {
   private final Set<Object> discoveredComponents = Collections.newSetFromMap(new WeakHashMap<>());
   @Inject private AnnotationParser<CommandSender> annotationParser;
@@ -33,7 +35,11 @@ public class AnnotationCommandListener implements TypeListener {
                 return;
               }
 
-              this.annotationParser.parse(instance);
+              try {
+                this.annotationParser.parse(instance);
+              } catch (Exception e) {
+                log.error("Failed to parse command annotations for " + instance.getClass(), e);
+              }
             });
   }
 }

@@ -1,15 +1,19 @@
 package de.rexlmanu.boilerplate.command;
 
-import static net.kyori.adventure.text.Component.text;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
+import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.Matchers;
+import com.google.inject.name.Named;
+import de.rexlmanu.boilerplate.utils.MiniMessageComponentCaptionFormatter;
+import de.rexlmanu.paperpluginstarter.config.MessageConfig;
+import de.rexlmanu.boilerplate.message.MessageProvider;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
-import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,7 +38,10 @@ public class CommandModule extends AbstractModule {
   @Provides
   @Singleton
   public CommandManager<CommandSender> provideCommandManager(
-      JavaPlugin javaPlugin, Injector injector, MiniMessage miniMessage) {
+      JavaPlugin javaPlugin,
+      Injector injector,
+      @Named("message") MiniMessage miniMessage,
+      MessageProvider messageProvider) {
 
     PaperCommandManager<CommandSender> commandManager =
         new PaperCommandManager<>(
@@ -48,7 +55,14 @@ public class CommandModule extends AbstractModule {
 
     commandManager
         .parameterInjectorRegistry()
-        .registerInjectionService(context -> injector.getInstance(context.injectedClass()));
+        .registerInjectionService(
+            request -> {
+              if (injector.findBindingsByType(TypeLiteral.get(request.injectedClass())).isEmpty()) {
+                return null;
+              }
+
+              return injector.getInstance(request.injectedClass());
+            });
 
     MinecraftExceptionHandler.<CommandSender>create(AudienceProvider.nativeAudience())
         .defaultInvalidSyntaxHandler()
@@ -56,14 +70,10 @@ public class CommandModule extends AbstractModule {
         .defaultNoPermissionHandler()
         .defaultArgumentParsingHandler()
         .defaultCommandExecutionHandler()
+        .captionFormatter(new MiniMessageComponentCaptionFormatter<>(miniMessage, List.of()))
         .decorator(
             component ->
-                text()
-                    .append(text("[", NamedTextColor.DARK_GRAY))
-                    .append(text("Starter", NamedTextColor.GOLD))
-                    .append(text("] ", NamedTextColor.DARK_GRAY))
-                    .append(component)
-                    .build())
+                messageProvider.getTranslationComponent(MessageConfig::prefix).append(component))
         .registerTo(commandManager);
 
     return commandManager;

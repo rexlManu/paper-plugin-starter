@@ -20,6 +20,7 @@ configlib = { module = "com.github.Exlll.ConfigLib:configlib-paper", version = "
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
 classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.165" }
 paper = { module = "io.papermc.paper:paper-api", version.ref = "minecraft" }
+invui = { module = "xyz.xenondevs.invui:invui", version = "1.25" }
 
 [bundles]
 cloud = ["cloud-paper", "cloud-annotations", "cloud-minecraft-extras"]

@@ -2,12 +2,15 @@ package de.rexlmanu.paperpluginstarter;
 
 import de.rexlmanu.boilerplate.BasePlugin;
 import de.rexlmanu.boilerplate.config.ConfigWrapper;
+import de.rexlmanu.boilerplate.message.MessageModule;
 import de.rexlmanu.paperpluginstarter.config.PluginConfig;
-import de.rexlmanu.paperpluginstarter.config.message.MessageConfig;
+import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 
 public class StarterPlugin extends BasePlugin {
   public StarterPlugin() {
     super(new String[] {StarterPlugin.class.getPackageName()});
+
+    this.installModule(MessageModule::new);
   }
 
   @Override

@@ -8,6 +8,7 @@ import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import org.slf4j.Logger;
 
 @Component
@@ -24,6 +25,13 @@ public class ConfigProvider {
 
   public <C> C get(Class<C> clazz) {
     return clazz.cast(this.configWrappers.get(clazz).config());
+  }
+
+  public <C> Optional<C> getOrNull(Class<C> clazz) {
+    if (!this.configWrappers.containsKey(clazz)) {
+      return Optional.empty();
+    }
+    return Optional.ofNullable(clazz.cast(this.configWrappers.get(clazz).config()));
   }
 
   public void register(ConfigWrapper<?> configWrapper) {

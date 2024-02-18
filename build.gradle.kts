@@ -12,6 +12,7 @@ repositories {
 	mavenCentral()
 	maven("https://repo.papermc.io/repository/maven-public/")
 	maven("https://jitpack.io")
+	maven("https://repo.xenondevs.xyz/releases")
 }
 
 dependencies {
@@ -20,10 +21,11 @@ dependencies {
 	// paperweight.paperDevBundle(libs.versions.minecraft)
 	compileOnly(libs.paper)
 
-	compileOnly(libs.bundles.cloud)
-	compileOnly(libs.configlib)
-	compileOnly(libs.guice)
-	compileOnly(libs.classgraph)
+	library(libs.bundles.cloud)
+	paperLibrary(libs.configlib)
+	library(libs.guice)
+	library(libs.classgraph)
+	compileOnly(libs.invui)
 }
 
 
@@ -85,4 +87,5 @@ paper {
 	loader = "de.rexlmanu.paperpluginstarter.StarterLoader"
 	apiVersion = "1.19"
 	author = "Emmanuel Lampe | rexlManu <mail@emmanuel-lampe.de>"
+	generateLibrariesJson = true
 }
