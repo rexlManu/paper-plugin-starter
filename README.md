@@ -25,6 +25,7 @@ This is a boilerplate for creating a Paper plugin.
 - [Cloud](https://github.com/Incendo/cloud)
 - [Classgraph](https://github.com/classgraph/classgraph)
 - [Annotations](https://github.com/JetBrains/java-annotations)
+- [InvUI](https://github.com/NichtStudioCode/InvUI)
 
 ## License
 
