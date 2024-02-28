@@ -79,6 +79,9 @@ tasks {
 	runServer {
 		minecraftVersion(libs.versions.minecraftserver.get())
 	}
+	build {
+		dependsOn(shadowJar)
+	}
 }
 
 paper {
