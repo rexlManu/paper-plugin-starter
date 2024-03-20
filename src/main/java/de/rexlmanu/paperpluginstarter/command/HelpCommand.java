@@ -51,7 +51,7 @@ public class HelpCommand {
                             .entries()
                             .stream()
                             .map(CommandEntry::syntax)
-                            .map(Suggestion::simple)
+                            .map(Suggestion::suggestion)
                             .toList()))
             .handler(
                 context -> minecraftHelp.queryCommands(context.get("query"), context.sender())));
