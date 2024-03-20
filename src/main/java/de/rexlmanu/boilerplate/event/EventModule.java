@@ -6,6 +6,7 @@ import com.google.inject.matcher.Matchers;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
+import de.rexlmanu.boilerplate.event.impl.BukkitEventBus;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;

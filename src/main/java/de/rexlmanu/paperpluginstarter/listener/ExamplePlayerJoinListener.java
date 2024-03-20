@@ -52,7 +52,7 @@ public class ExamplePlayerJoinListener implements Listener {
 
     this.logger.info("Test instance: {}", instance);
 
-    eventBus.subscribe(
+    this.eventBus.subscribe(
         PlayerJoinEvent.class,
         event -> {
           event.joinMessage(
@@ -63,7 +63,12 @@ public class ExamplePlayerJoinListener implements Listener {
           this.logger.info("{} has joined the server.", event.getPlayer().getName());
         });
 
-    eventBus.subscribe(ServerLoadEvent.class, event -> this.logger.info("Server loaded."));
+    this.eventBus
+        .on(PlayerJoinEvent.class)
+        .filter(event -> event.getPlayer().getName().equals("rexlManu"))
+        .subscribe(event -> this.logger.info("rexlManu joined the server."));
+
+    this.eventBus.subscribe(ServerLoadEvent.class, event -> this.logger.info("Server loaded."));
   }
 
   @OnPluginDisable

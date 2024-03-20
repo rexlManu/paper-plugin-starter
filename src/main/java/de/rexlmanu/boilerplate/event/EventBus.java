@@ -18,5 +18,7 @@ public interface EventBus {
     return this.subscribe(eventType, action, EventPriority.NORMAL);
   }
 
+  <T extends Event> EventListenerBuilder<T> on(Class<T> eventType);
+
   void unsubscribe(Listener listener);
 }
