@@ -14,7 +14,9 @@ This is a boilerplate for creating a Paper plugin.
 - Incendo Cloud v2 Command Framework
 - Listeners and annotation based commands are registered when discovered
 - Annotations for Lifecycle Events like `@OnPluginEnable`, `@OnPluginDisable` and `@OnPluginReload`
+- Lifecycle Hooks `@RunBefore` and `@RunAfter` for precise declaration when methods are executed
 - Define methods as `@TimedTask` to run them on an async repeating schedule
+- Extensive Task Scheduler that also supports Folia
 - Gradle Version Catalogs
 
 ## Libraries
