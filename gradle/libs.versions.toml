@@ -4,7 +4,7 @@ minecraftserver = "1.20.4"
 googlejavaformat = "1.17.0"
 cloud = "2.0.0-beta.4"
 [plugins]
-userdev = { id = "io.papermc.paperweight.userdev", version = "1.6.3" }
+userdev = { id = "io.papermc.paperweight.userdev", version = "1.7.1" }
 runpaper = { id = "xyz.jpenilla.run-paper", version = "2.2.4" }
 shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
 lombok = { id = "io.freefair.lombok", version = "8.6" }
