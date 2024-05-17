@@ -1,9 +1,11 @@
 package de.rexlmanu.boilerplate.config;
 
 import com.google.inject.Inject;
+import de.rexlmanu.boilerplate.lifecycle.LifecyclePriority;
 import de.rexlmanu.boilerplate.lifecycle.annotations.DataDirectory;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginReload;
+import de.rexlmanu.boilerplate.lifecycle.annotations.hook.RunPriority;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,6 +47,7 @@ public class ConfigProvider {
 
   @OnPluginEnable
   @OnPluginReload
+  @RunPriority(LifecyclePriority.LOWEST)
   public void loadConfigs() {
     this.configWrappers.values().forEach(this::loadConfig);
 

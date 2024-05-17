@@ -5,10 +5,12 @@ import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import de.rexlmanu.boilerplate.lifecycle.annotations.hook.RunAfter;
 import de.rexlmanu.boilerplate.lifecycle.annotations.hook.RunBefore;
+import de.rexlmanu.boilerplate.lifecycle.annotations.hook.RunPriority;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -54,16 +56,20 @@ public class LifecycleMethodNotifier {
           for (var method : entry.getValue()) {
             Class<?>[] afterDependencies = new Class<?>[0];
             Class<?>[] beforeDependencies = new Class<?>[0];
+            var priority = LifecyclePriority.NORMAL;
             if (method.isAnnotationPresent(RunAfter.class)) {
               afterDependencies = method.getAnnotation(RunAfter.class).value();
             }
             if (method.isAnnotationPresent(RunBefore.class)) {
               beforeDependencies = method.getAnnotation(RunBefore.class).value();
             }
+            if (method.isAnnotationPresent(RunPriority.class)) {
+              priority = method.getAnnotation(RunPriority.class).value();
+            }
 
             compiledLifecycleMethods.add(
                 new CompiledLifecycleMethod(
-                    clazz, method, component, afterDependencies, beforeDependencies));
+                    clazz, method, component, afterDependencies, beforeDependencies, priority));
           }
           break;
         }
@@ -94,7 +100,8 @@ public class LifecycleMethodNotifier {
       Method method,
       Object component,
       Class<?>[] afterDependencies,
-      Class<?>[] beforeDependencies) {}
+      Class<?>[] beforeDependencies,
+      LifecyclePriority priority) {}
 
   public static void sortCompiledLifecycleMethods(List<CompiledLifecycleMethod> methods) {
     // Create a graph and an in-degree map for topological sorting
@@ -121,7 +128,7 @@ public class LifecycleMethodNotifier {
       }
     }
 
-    // Perform topological sort
+    // Perform topological sort with priority consideration
     Queue<Class<?>> queue = new LinkedList<>();
     for (Map.Entry<Class<?>, Integer> entry : inDegree.entrySet()) {
       if (entry.getValue() == 0) {
@@ -132,12 +139,19 @@ public class LifecycleMethodNotifier {
     List<CompiledLifecycleMethod> sortedMethods = new ArrayList<>();
     while (!queue.isEmpty()) {
       Class<?> current = queue.poll();
+
+      // Gather all methods at this topological level
+      List<CompiledLifecycleMethod> currentLevelMethods = new ArrayList<>();
       for (CompiledLifecycleMethod method : methods) {
         if (method.originClass().equals(current)) {
-          sortedMethods.add(method);
-          break;
+          currentLevelMethods.add(method);
         }
       }
+
+      // Sort methods at this level by priority
+      currentLevelMethods.sort(Comparator.comparing(CompiledLifecycleMethod::priority));
+
+      sortedMethods.addAll(currentLevelMethods);
 
       for (Class<?> neighbor : graph.get(current)) {
         inDegree.put(neighbor, inDegree.get(neighbor) - 1);
@@ -148,8 +162,7 @@ public class LifecycleMethodNotifier {
     }
 
     if (sortedMethods.size() != methods.size()) {
-      throw new RuntimeException(
-          "A cycle was detected in the dependencies, cannot perform topological sort.");
+      throw new RuntimeException("A cycle was detected in the dependencies, cannot perform topological sort.");
     }
 
     methods.clear();
