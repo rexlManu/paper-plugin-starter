@@ -1,6 +1,8 @@
 package de.rexlmanu.boilerplate.config;
 
+import de.exlll.configlib.ConfigLib;
 import de.exlll.configlib.YamlConfigurations;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +13,12 @@ public abstract class ConfigWrapper<C> {
     return new ConfigWrapper<>(filename, clazz) {
       @Override
       public C load(Path path) {
-        return YamlConfigurations.update(path, clazz);
+        return YamlConfigurations.update(
+            path,
+            clazz,
+            ConfigLib.BUKKIT_DEFAULT_PROPERTIES.toBuilder()
+                .charset(StandardCharsets.UTF_8)
+                .build());
       }
     };
   }

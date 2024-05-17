@@ -16,7 +16,7 @@ commandframework = { module = "cloud.commandframework:cloud-paper", version = "1
 cloud-paper = { module = "org.incendo:cloud-paper", version.ref = "cloud" }
 cloud-annotations = { module = "org.incendo:cloud-annotations", version.ref = "cloud" }
 cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", version.ref = "cloud" }
-configlib = { module = "de.exlll:configlib-yaml", version = "4.5.0" }
+configlib = { module = "de.exlll:configlib-paper", version = "4.5.0" }
 guice = { module = "com.google.inject:guice", version = "7.0.0" }
 classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.172" }
 paper = { module = "io.papermc.paper:paper-api", version.ref = "minecraft" }
