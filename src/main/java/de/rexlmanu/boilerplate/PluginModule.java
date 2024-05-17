@@ -8,14 +8,15 @@ import de.rexlmanu.boilerplate.event.EventModule;
 import de.rexlmanu.boilerplate.lifecycle.annotations.DataDirectory;
 import de.rexlmanu.boilerplate.lifecycle.annotations.PluginLogger;
 import de.rexlmanu.boilerplate.lifecycle.task.TaskModule;
+import de.rexlmanu.boilerplate.message.MessageModule;
 import de.rexlmanu.boilerplate.scheduler.SchedulerModule;
+import de.rexlmanu.paperpluginstarter.StarterPlugin;
 import io.papermc.paper.datapack.DatapackManager;
 import io.papermc.paper.plugin.configuration.PluginMeta;
 import io.papermc.paper.threadedregions.scheduler.AsyncScheduler;
 import io.papermc.paper.threadedregions.scheduler.GlobalRegionScheduler;
 import io.papermc.paper.threadedregions.scheduler.RegionScheduler;
 import java.nio.file.Path;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 import lombok.RequiredArgsConstructor;
 import net.kyori.adventure.text.logger.slf4j.ComponentLogger;
@@ -39,7 +40,7 @@ import org.bukkit.structure.StructureManager;
 
 @RequiredArgsConstructor
 public class PluginModule extends AbstractModule {
-  private final BasePlugin plugin;
+  private final StarterPlugin plugin;
 
   @Override
   protected void configure() {
@@ -47,13 +48,10 @@ public class PluginModule extends AbstractModule {
     this.install(new EventModule(this.plugin, server.getPluginManager()));
     this.install(new TaskModule(server.getAsyncScheduler(), this.plugin));
     this.install(new CommandModule());
+    this.install(new MessageModule());
     this.install(new SchedulerModule(this.plugin));
 
-    for (Supplier<AbstractModule> moduleSupplier : this.plugin.moduleSuppliers()) {
-      this.install(moduleSupplier.get());
-    }
-
-    this.bind(BasePlugin.class).toInstance(this.plugin);
+    this.bind(StarterPlugin.class).toInstance(this.plugin);
     this.bind(JavaPlugin.class).toInstance(this.plugin);
     //noinspection UnstableApiUsage
     this.bind(PluginMeta.class).toInstance(this.plugin.getPluginMeta());

@@ -3,10 +3,10 @@ package de.rexlmanu.paperpluginstarter.command;
 import static net.kyori.adventure.text.Component.text;
 
 import com.google.inject.Inject;
-import de.rexlmanu.boilerplate.BasePlugin;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import de.rexlmanu.boilerplate.message.MessageProvider;
+import de.rexlmanu.paperpluginstarter.StarterPlugin;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,7 @@ import org.incendo.cloud.minecraft.extras.RichDescription;
 public class ReloadCommand {
   private final CommandManager<CommandSender> commandManager;
   private final MessageProvider messageProvider;
-  private final BasePlugin basePlugin;
+  private final StarterPlugin basePlugin;
 
   @OnPluginEnable
   public void registerCommands() {

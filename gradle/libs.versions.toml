@@ -30,7 +30,7 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 [libraries]
 cloud-paper = { module = "org.incendo:cloud-paper", version.ref = "cloud-paper" }
 cloud-annotations = { module = "org.incendo:cloud-annotations", version.ref = "cloud" }
-cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", version.ref = "cloud" }
+cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", version.ref = "cloud-paper" }
 configlib = { module = "de.exlll:configlib-paper", version.ref = "configlib" }
 guice = { module = "com.google.inject:guice", version.ref = "guice" }
 classgraph = { module = "io.github.classgraph:classgraph", version.ref = "classgraph" }

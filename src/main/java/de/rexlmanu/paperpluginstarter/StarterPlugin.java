@@ -1,21 +1,80 @@
 package de.rexlmanu.paperpluginstarter;
 
-import de.rexlmanu.boilerplate.BasePlugin;
+import com.google.inject.Guice;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Stage;
+import de.rexlmanu.boilerplate.PluginModule;
+import de.rexlmanu.boilerplate.config.ConfigProvider;
 import de.rexlmanu.boilerplate.config.ConfigWrapper;
-import de.rexlmanu.boilerplate.message.MessageModule;
+import de.rexlmanu.boilerplate.lifecycle.LifecycleMethodNotifier;
+import de.rexlmanu.boilerplate.lifecycle.LifecycleModule;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 import de.rexlmanu.paperpluginstarter.config.PluginConfig;
+import io.github.classgraph.ClassGraph;
+import java.util.stream.Stream;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class StarterPlugin extends BasePlugin {
-  public StarterPlugin() {
-    super(new String[] {StarterPlugin.class.getPackageName()});
+public class StarterPlugin extends JavaPlugin {
+  protected Injector injector;
+  @Inject protected ConfigProvider configProvider;
 
-    this.installModule(MessageModule::new);
+  @Override
+  public void onEnable() {
+    long start = System.currentTimeMillis();
+    try {
+      this.injector =
+          Guice.createInjector(
+              Stage.PRODUCTION,
+              new LifecycleModule(
+                  new ClassGraph()
+                      .acceptPackages(
+                          Stream.of(
+                                  PluginModule.class.getPackageName(),
+                                  StarterPlugin.class.getPackageName())
+                              .toArray(String[]::new))
+                      .enableAnnotationInfo()
+                      .enableClassInfo()
+                      .enableMethodInfo()
+                      .scan()),
+              new PluginModule(this));
+
+      this.injector.injectMembers(this);
+    } catch (Exception e) {
+      this.getSLF4JLogger().error("Plugin initialization failed.", e);
+      this.disableItself();
+      return;
+    }
+
+    this.configProvider.register(ConfigWrapper.from(MessageConfig.class, "messages.yml"));
+    this.configProvider.register(ConfigWrapper.from(PluginConfig.class, "config.yml"));
+
+    this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginEnable();
+
+    this.getSLF4JLogger().info("Plugin enabled in {}ms.", System.currentTimeMillis() - start);
   }
 
   @Override
-  public void onPluginEnable() {
-    this.configProvider.register(ConfigWrapper.from(MessageConfig.class, "messages.yml"));
-    this.configProvider.register(ConfigWrapper.from(PluginConfig.class, "config.yml"));
+  public void onDisable() {
+    // Only happens if the plugin initialization failed.
+    if (this.injector == null) {
+      return;
+    }
+    long start = System.currentTimeMillis();
+    this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginDisable();
+
+    this.getSLF4JLogger().info("Plugin disabled in {}ms.", System.currentTimeMillis() - start);
+  }
+
+  public void onReload() {
+    long start = System.currentTimeMillis();
+
+    this.injector.getInstance(LifecycleMethodNotifier.class).notifyPluginReload();
+
+    this.getSLF4JLogger().info("Plugin reloaded in {}ms.", System.currentTimeMillis() - start);
+  }
+
+  public void disableItself() {
+    this.setEnabled(false);
   }
 }

@@ -5,10 +5,12 @@ import de.rexlmanu.boilerplate.lifecycle.annotations.DataDirectory;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginReload;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 
 @Component
@@ -17,10 +19,13 @@ public class ConfigProvider {
   private final Path dataDirectory;
   private final Logger logger;
 
+  @SneakyThrows
   @Inject
   public ConfigProvider(@DataDirectory Path dataDirectory, Logger logger) {
     this.dataDirectory = dataDirectory;
     this.logger = logger;
+
+    Files.createDirectories(dataDirectory);
   }
 
   public <C> C get(Class<C> clazz) {

@@ -3,12 +3,9 @@ package de.rexlmanu.paperpluginstarter.command;
 import static net.kyori.adventure.text.Component.text;
 
 import com.google.inject.Inject;
-import de.rexlmanu.boilerplate.BasePlugin;
-import de.rexlmanu.boilerplate.config.ConfigProvider;
 import de.rexlmanu.boilerplate.lifecycle.annotations.OnPluginEnable;
 import de.rexlmanu.boilerplate.lifecycle.component.Component;
 import lombok.RequiredArgsConstructor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.incendo.cloud.CommandManager;
 import org.incendo.cloud.component.DefaultValue;
@@ -24,9 +21,6 @@ import org.incendo.cloud.suggestion.SuggestionProvider;
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
 public class HelpCommand {
   private final CommandManager<CommandSender> commandManager;
-  private final MiniMessage miniMessage;
-  private final ConfigProvider configProvider;
-  private final BasePlugin basePlugin;
 
   @OnPluginEnable
   public void registerCommands() {
