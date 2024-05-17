@@ -1,26 +1,41 @@
 [versions]
-minecraft = "1.20.4-R0.1-SNAPSHOT"
 minecraftserver = "1.20.4"
 googlejavaformat = "1.17.0"
+
+# plugins
+userdev = "1.7.1"
+runpaper = "2.3.0"
+shadow = "8.1.1"
+lombok = "8.6"
+paperyml = "0.6.0"
+spotless = "6.25.0"
+
+# libraries
+cloud-paper = "2.0.0-beta.5"
 cloud = "2.0.0-beta.4"
+configlib = "4.5.0"
+guice = "7.0.0"
+classgraph = "4.8.172"
+paper = "1.20.4-R0.1-SNAPSHOT"
+invui = "1.30"
+
 [plugins]
-userdev = { id = "io.papermc.paperweight.userdev", version = "1.7.1" }
-runpaper = { id = "xyz.jpenilla.run-paper", version = "2.3.0" }
-shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
-lombok = { id = "io.freefair.lombok", version = "8.6" }
-paperyml = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
-spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
+userdev = { id = "io.papermc.paperweight.userdev", version.ref = "userdev" }
+runpaper = { id = "xyz.jpenilla.run-paper", version.ref = "runpaper" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok" }
+paperyml = { id = "net.minecrell.plugin-yml.paper", version.ref = "paperyml" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+
 [libraries]
-annotations = { module = "org.jetbrains:annotations", version = "24.1.0" }
-commandframework = { module = "cloud.commandframework:cloud-paper", version = "1.8.4" }
-cloud-paper = { module = "org.incendo:cloud-paper", version.ref = "cloud" }
+cloud-paper = { module = "org.incendo:cloud-paper", version.ref = "cloud-paper" }
 cloud-annotations = { module = "org.incendo:cloud-annotations", version.ref = "cloud" }
 cloud-minecraft-extras = { module = "org.incendo:cloud-minecraft-extras", version.ref = "cloud" }
-configlib = { module = "de.exlll:configlib-paper", version = "4.5.0" }
-guice = { module = "com.google.inject:guice", version = "7.0.0" }
-classgraph = { module = "io.github.classgraph:classgraph", version = "4.8.172" }
-paper = { module = "io.papermc.paper:paper-api", version.ref = "minecraft" }
-invui = { module = "xyz.xenondevs.invui:invui", version = "1.27" }
+configlib = { module = "de.exlll:configlib-paper", version.ref = "configlib" }
+guice = { module = "com.google.inject:guice", version.ref = "guice" }
+classgraph = { module = "io.github.classgraph:classgraph", version.ref = "classgraph" }
+paper = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+invui = { module = "xyz.xenondevs.invui:invui", version.ref = "invui" }
 
 [bundles]
 cloud = ["cloud-paper", "cloud-annotations", "cloud-minecraft-extras"]

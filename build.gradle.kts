@@ -21,7 +21,7 @@ dependencies {
 	compileOnly(libs.paper)
 
 	library(libs.bundles.cloud)
-	paperLibrary(libs.configlib)
+	library(libs.configlib)
 	library(libs.guice)
 	library(libs.classgraph)
 	compileOnly(libs.invui)

@@ -27,7 +27,7 @@ public class StarterLoader implements PluginLoader {
             .build());
     resolver.addDependency(
         new Dependency(
-            new DefaultArtifact("xyz.xenondevs.invui", "invui", null, "pom", "1.25"), null));
+            new DefaultArtifact("xyz.xenondevs.invui", "invui", null, "pom", "1.30"), null));
     classpathBuilder.addLibrary(resolver);
   }
 
