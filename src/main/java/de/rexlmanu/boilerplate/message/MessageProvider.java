@@ -11,6 +11,8 @@ import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import xyz.xenondevs.inventoryaccess.component.AdventureComponentWrapper;
+import xyz.xenondevs.inventoryaccess.component.ComponentWrapper;
 
 @Singleton
 @RequiredArgsConstructor(onConstructor = @__(@Inject))
@@ -35,5 +37,10 @@ public class MessageProvider {
   public Component getTranslationComponent(
       Function<MessageConfig, String> messageMapper, TagResolver... resolvers) {
     return this.miniMessage.deserialize(this.getTranslation(messageMapper), resolvers);
+  }
+
+  public ComponentWrapper getTranslationComponentWrapper(
+      Function<MessageConfig, String> messageMapper, TagResolver... resolvers) {
+    return new AdventureComponentWrapper(this.getTranslationComponent(messageMapper, resolvers));
   }
 }
