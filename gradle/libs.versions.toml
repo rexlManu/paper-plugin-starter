@@ -11,7 +11,7 @@ paperyml = "0.6.0"
 spotless = "6.25.0"
 
 # libraries
-cloud-paper = "2.0.0-beta.7"
+cloud-paper = "2.0.0-SNAPSHOT"
 cloud = "2.0.0-rc.1"
 configlib = "4.5.0"
 guice = "7.0.0"
