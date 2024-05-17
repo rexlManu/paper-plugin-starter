@@ -162,7 +162,8 @@ public class LifecycleMethodNotifier {
     }
 
     if (sortedMethods.size() != methods.size()) {
-      throw new RuntimeException("A cycle was detected in the dependencies, cannot perform topological sort.");
+      throw new RuntimeException(
+          "A cycle was detected in the dependencies, cannot perform topological sort.");
     }
 
     methods.clear();
