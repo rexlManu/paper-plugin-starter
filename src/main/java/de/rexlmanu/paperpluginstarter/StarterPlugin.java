@@ -1,5 +1,7 @@
 package de.rexlmanu.paperpluginstarter;
 
+import static de.rexlmanu.boilerplate.utils.LifecycleUtils.scan;
+
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -11,11 +13,15 @@ import de.rexlmanu.boilerplate.lifecycle.LifecycleMethodNotifier;
 import de.rexlmanu.boilerplate.lifecycle.LifecycleModule;
 import de.rexlmanu.paperpluginstarter.config.MessageConfig;
 import de.rexlmanu.paperpluginstarter.config.PluginConfig;
-import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ScanResult;
 import java.util.stream.Stream;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class StarterPlugin extends JavaPlugin {
+  private final ScanResult scanResult =
+      scan(
+          Stream.of(PluginModule.class.getPackageName(), StarterPlugin.class.getPackageName())
+              .toArray(String[]::new));
   protected Injector injector;
   @Inject protected ConfigProvider configProvider;
 
@@ -25,21 +31,10 @@ public class StarterPlugin extends JavaPlugin {
     try {
       this.injector =
           Guice.createInjector(
-              Stage.PRODUCTION,
-              new LifecycleModule(
-                  new ClassGraph()
-                      .acceptPackages(
-                          Stream.of(
-                                  PluginModule.class.getPackageName(),
-                                  StarterPlugin.class.getPackageName())
-                              .toArray(String[]::new))
-                      .enableAnnotationInfo()
-                      .enableClassInfo()
-                      .enableMethodInfo()
-                      .scan()),
-              new PluginModule(this));
-
+              Stage.PRODUCTION, new LifecycleModule(this.scanResult), new PluginModule(this));
       this.injector.injectMembers(this);
+      // we need to close the scan result to avoid memory leaks
+      this.scanResult.close();
     } catch (Exception e) {
       this.getSLF4JLogger().error("Plugin initialization failed.", e);
       this.disableItself();
