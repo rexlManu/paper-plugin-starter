@@ -15,7 +15,7 @@ cloud-paper = "2.0.0-beta.7"
 cloud = "2.0.0-rc.1"
 configlib = "4.5.0"
 guice = "7.0.0"
-classgraph = "4.8.172"
+classgraph = "4.8.174"
 paper = "1.20.4-R0.1-SNAPSHOT"
 invui = "1.33"
 
