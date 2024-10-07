@@ -6,7 +6,7 @@ googlejavaformat = "1.17.0"
 userdev = "1.7.2"
 runpaper = "2.3.0"
 shadow = "8.1.1"
-lombok = "8.7.1"
+lombok = "8.10.2"
 paperyml = "0.6.0"
 spotless = "6.25.0"
 
